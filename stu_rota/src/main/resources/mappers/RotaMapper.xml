@@ -1,0 +1,19 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mappers.RotaMapper">
+
+    <resultMap id="RotaResultMap" type="Rota">
+        <id column="id" property="id" />
+        <result column="nome" property="nome" />
+    </resultMap>
+
+    <select id="findAllByUsuario" resultMap="RotaResultMap">
+        select * from usuario us 
+			left join usuario_rota ur
+				on ur.usuario_id = us.id
+			where ur.rota_id = :rota_id
+    </select>
+        
+</mapper>

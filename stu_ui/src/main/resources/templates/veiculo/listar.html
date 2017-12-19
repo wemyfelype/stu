@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+	  layout:decorator="base/layout">
+<head>
+    <title>Home Page</title>
+ 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta name="description" content="Blog www.ciceroednilson.com.br"/>
+	<meta name="author" content="Cícero Ednilson"/>  
+	
+	<script th:src="@{/js/base/dialog-polyfill.js}"></script>
+	<script th:src="@{/js/veiculo/veiculo.js}"></script>
+	<script type="text/javascript">
+		 $(document).ready(function(){
+	    	var dialog = document.querySelector('dialog');
+
+            dialogPolyfill.registerDialog(dialog);
+		    
+		    $('dialog .close').on('click', function() {
+		    	dialog.close();
+		    });
+		    $('dialog .yes').on('click', function() {
+		    	dialog.close();
+		    	$("#loading").fadeIn();
+		    	var id = $('dialog #id_veiculo_dialog').val();
+		    	veiculo.deletar(id);
+		    	$("#card-veiculo-"+id).remove()
+			});
+						
+		    $('div.mdl-card__actions').on('click','a.delete', function() {
+		    	$('dialog #id_veiculo_dialog').val(this.value);
+		    	dialog.showModal();
+			});
+		    
+		    $('.edit').on('click', function() {
+		    	window.location.href = window.location.origin+"/veiculo/"+this.value;
+			});
+		    
+		    $("#btn-novo").on("click", function(){
+		    	window.location.href = window.location.origin+"/veiculo/novo";
+		    });
+		    
+		});
+	
+	</script> 
+</head>
+<body>
+
+<section layout:fragment="content">
+		
+		 <div class="mdl-grid">
+		 	<div class="mdl-cell mdl-cell--1-col" ></div>
+			<div class="mdl-cell mdl-cell--10-col" >				
+				<div class="mdl-grid" id="cards-">	
+				</div>
+			</div>
+			<div class="mdl-cell mdl-cell--1-col" ></div>
+		</div>
+		<button id="btn-novo" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button-novo mdl-button--colored">
+		  <i class="material-icons">add</i>
+		</button>
+	<dialog id="deletar" class="mdl-dialog">
+	    <input type="hidden" id="id_veiculo_dialog" />
+	    <div class="mdl-dialog__content">
+	      <p>
+	        <h4>Deseja realmente excluir este veiculo?</h4>
+	      </p>
+	    </div>
+	    <div class="mdl-dialog__actions mdl-dialog__actions--full-width">
+	      <button type="button" class="mdl-button yes">Sim</button>
+	      <button type="button" class="mdl-button close">Não</button>
+	    </div>
+	</dialog>
+		
+</section>
+
+ 
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+	  layout:decorator="base/layout">
+<head>
+    <title>Home Page</title>
+ 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta name="description" content="Blog www.ciceroednilson.com.br"/>
+	<meta name="author" content="Cícero Ednilson"/>        
+</head>
+<body>
+
+<section layout:fragment="content">
+		<div class="mdl-grid">
+			<div class="mdl-cell mdl-cell--8-col mdl-cell--10-col-tablet mdl-color--white mdl-cell--2-offset" >
+				<form action="#">
+				
+				  <div class="mdl-cell--10-col mdl-cell--1-offset">
+				  	<h2 class="mdl-h2-title">Novo Usuario</h2>
+				  </div>			  
+				  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--10-col mdl-cell--1-offset">
+				    <input class="mdl-textfield__input" type="text" name="nome" id="nome" />
+				    <label class="mdl-textfield__label" for="nome">Nome Sobrenome</label>
+				  </div>
+				  <br/><br/>
+				  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--10-col mdl-cell--9-offset">
+				  	<a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"> Salvar</a>
+				  </div>
+				  
+				</form>
+			</div>
+		</div>   
+</section>
+ 
+</body>
+</html>

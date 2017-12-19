@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+	  layout:decorator="base/layout">
+<head>
+    <title>Home Page</title>
+ 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta name="description" content="Blog www.ciceroednilson.com.br"/>
+	<meta name="author" content="Cícero Ednilson"/>  
+	
+	
+	<script th:src="@{/js/rota/rota.js}"></script>
+	<script type="text/javascript">
+	
+		$(document).ready(function(){
+			
+			$("#btn-salvar").on("click",function(){
+				if(rota.salvar() != null)
+					window.location.href = window.location.origin+"/rota/listar";
+			});
+			
+		});
+	
+	</script>      
+</head>
+<body> 
+
+<section layout:fragment="content">
+		
+	 <form id="form-salvar-rota" action="#">
+		<input type="hidden" name="id"  id="id" th:value="${id}" />
+		
+		 <div class="mdl-grid">
+
+			<div class="mdl-cell mdl-cell--1-col" ></div>
+			<div class="mdl-cell mdl-cell--10-col" >				
+			  	<h2 class="mdl-h2-title">Editar Rota</h2>
+			</div>
+			<div class="mdl-cell mdl-cell--1-col" ></div>
+			
+		 
+		 	<div class="mdl-cell mdl-cell--1-col" ></div>
+			<div class="mdl-cell mdl-cell--10-col" >				
+			  <div class="mdl-cell--12-col col-full mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+			    <input class="mdl-textfield__input" type="text" name="nome" id="nome" />
+			    <label class="mdl-textfield__label" for="nome">Nome Sobrenome</label>
+			  </div>	  
+			</div>
+			<div class="mdl-cell mdl-cell--1-col" ></div>
+						
+		 	<div class="mdl-cell mdl-cell--9-col" ></div>
+			<div class="mdl-cell mdl-cell--2-col" >				
+			    <div class="mdl-button	mdl-js-button">
+				  	<a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" id="btn-salvar"> Salvar</a>
+				</div>
+			</div>
+			<div class="mdl-cell mdl-cell--1-col" ></div>	  
+		</div>
+		
+	</form>
+	 
+</section>
+ 
+</body>
+</html>
