@@ -1,14 +1,15 @@
- var host_services='104.198.227.13';
-//var host_services = window.location.hostname;
+//var host_services='http://35.225.93.179:8080';
+var host_services = "http://" + window.location.hostname + ":8080";
 
 $(document).ready(function(){
 	
 	var pathName = document.location.pathname;
 		
 	if(/usuario\/[\d]/.test(pathName))
-		usuario.popularObjeto();
+		//usuario.popularObjeto();
+	
 	if(/usuario\/listar/.test(pathName))
-		usuario.popularLista();
+		/*usuario.popularLista();*/
 	
 	if(/veiculo\/[\d]/.test(pathName))
 		veiculo.popularObjeto();

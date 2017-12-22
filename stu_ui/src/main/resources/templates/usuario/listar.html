@@ -10,40 +10,11 @@
 	<meta name="author" content="Cícero Ednilson"/>  
 	
 	<script th:src="@{/js/base/dialog-polyfill.js}"></script>
-	<script th:src="@{/js/usuario/usuario.js}"></script>
-	<script type="text/javascript">
-		 $(document).ready(function(){
-	    	var dialog = document.querySelector('dialog');
-
-            dialogPolyfill.registerDialog(dialog);
-		    
-		    $('dialog .close').on('click', function() {
-		    	dialog.close();
-		    });
-		    $('dialog .yes').on('click', function() {
-		    	dialog.close();
-		    	$("#loading").fadeIn();
-		    	var id = $('dialog #id_usuario_dialog').val();
-		    	usuario.deletar(id);
-		    	$("#card-usuario-"+id).remove()
-			});
-						
-		    $('div.mdl-card__actions').on('click','a.delete', function() {
-		    	$('dialog #id_usuario_dialog').val(this.value);
-		    	dialog.showModal();
-			});
-		    
-		    $('.edit').on('click', function() {
-		    	window.location.href = window.location.origin+"/usuario/"+this.value;
-			});
-		    
-		    $("#btn-novo").on("click", function(){
-		    	window.location.href = window.location.origin+"/usuario/novo";
-		    });
-		    
-		});
 	
-	</script> 
+	<script th:src="@{/js/consumer/UsuarioConsumer.js}"></script>
+	<script th:src="@{/js/usuario/usuario.js}"></script>
+	<script th:src="@{/js/usuario/usuario_listar.js}"></script>
+	
 </head>
 <body>
 

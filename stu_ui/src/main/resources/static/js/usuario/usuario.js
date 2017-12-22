@@ -1,89 +1,6 @@
 var usuario = {};
 (function(){
 	
-	this.trazer = function(id){
-		var _usuario;
-		$.ajax({
-			type : "GET",
-			async: false,
-			url : "http://" + host_services + ":8081/usuario/"+id,
-			success : function(data) {
-				if (data != null){
-					_usuario = data;
-				}
-			}
-		});
-		
-		return _usuario;
-		
-	};
-	
-	this.listar = function(){
-		var _usuario;
-		$.ajax({
-			type : "GET",
-			async: false,
-			url : "http://" + host_services + ":8081/usuario/listar",
-			success : function(data) {
-				if (data != null){
-					_usuario = data;
-				}
-			}
-		});
-		
-		return _usuario;
-		
-	};
-	
-	this.salvar = function(){
-		
-		var _usuario;
-		
-		$.ajax({
-			type : "POST",
-			async: false,
-			url : "http://" + host_services + ":8080/usuario/salvar",
-			data : JSON.stringify($("#form-salvar-usuario").serializeJSON()),
-			headers: {'Accept': 'application/json', 'Content-Type': 'application/json'},
-			beforeSend: function(){
-				$("#loading").fadeIn();
-	        },
-			success : function(data) {
-				$("#loading").fadeOut();
-				if (data != null){
-					_usuario = data;
-//					alert('Person has been added');
-				}else{
-					alert('Failed adding person: ' + data.status + ', ' + data.errorMessage);
-				}
-			}
-		}).done(function(){
-		});
-
-		return _usuario;
-		
-	};
-	
-	this.deletar = function(id){
-		
-		$.ajax({
-			type : "DELETE",
-			async: false,
-			url : "http://" + host_services + ":8081/usuario/deletar/"+id,
-			beforeSend: function(){
-				$("#loading").fadeIn();
-	        },
-			success : function(data) {
-				if (data != null){
-					console.log(data);
-				}
-			}
-		}).done(function(){
-			$("#loading").fadeOut();			
-		});
-		
-	};
-	
 	this.clean = function(){
 		
 		$("#form-salvar-usuario input").val("");
@@ -92,7 +9,7 @@ var usuario = {};
 	
 	this.popularObjeto = function(){
 		
-		var _usuario = usuario.trazer($("#form-salvar-usuario input#id").val());
+		var _usuario = UsuarioConsumer.trazer($("#form-salvar-usuario input#id").val());
 		
 		$.each(_usuario,function(param, val){
 			$("#form-salvar-usuario input[name='"+param+"']").val(val).parent().addClass('is-focused');;
@@ -102,7 +19,7 @@ var usuario = {};
 	
 	this.popularTable = function(){
 		
-		var _listUsuarios = usuario.listar();
+		var _listUsuarios = UsuarioConsumer.listar();
 		
 		var __tr = $("<tr/>");
 		var __td = $("<td/>");
@@ -124,7 +41,7 @@ var usuario = {};
 	
 	this.popularLista = function(){
 		
-		var _listUsuarios = usuario.listar();
+		var _listUsuarios = UsuarioConsumer.listar();
 		$("#cards-").empty();
 		
 		if(_listUsuarios != null){
@@ -154,4 +71,9 @@ var usuario = {};
 		return _div_card;
 	};
 	
+	this.redirect = function(path){
+		window.location.href = window.location.origin + path;
+	};
+	
 }).apply(usuario);
+
