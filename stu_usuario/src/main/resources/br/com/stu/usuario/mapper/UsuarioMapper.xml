@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mbatis.org/DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="br.com.stu.usuario.mapper.UsuarioMapper">
+	
+	<select id="search" parameterType="br.com.stu.usuario.domain.Usuario" resultType="br.com.stu.usuario.domain.Usuario">
+		select * from stu.usuario
+		<where>
+			<if test="nome != null"> nome = #{nome}</if>
+			<if test="idRota != null"> id_rota = #{idRota}</if>
+		</where>
+	</select>
+	
+	<select id="findById" parameterType="br.com.stu.usuario.domain.Usuario" resultType="br.com.stu.usuario.domain.Usuario">
+		select * from stu.usuario where id = #{id}
+	</select>
+	
+	<insert id="insert" parameterType="br.com.stu.usuario.domain.Usuario" keyProperty="id"  keyColumn="id">	
+		<selectKey keyProperty="id" resultType="long" order="BEFORE">
+            select nextval('"stu".seq_usuario_id');
+        </selectKey>
+		insert into stu.usuario(id,nome,id_rota) values (#{id},#{nome},#{idRota})
+	</insert>
+	
+	<update id="update" parameterType="br.com.stu.usuario.domain.Usuario">
+		update stu.usuario set nome = #{nome}, id_rota = #{idRota} where id = #{id}
+	</update>
+	
+	<delete id="delete" parameterType="br.com.stu.usuario.domain.Usuario">
+		delete from stu.usuario where id = #{id}
+	</delete>
+	
+</mapper>

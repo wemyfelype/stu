@@ -20,7 +20,7 @@ public class UsuarioController {
 	
 	@Autowired
 	private UsuarioService service;
-	
+		
 	@GetMapping("/{id}")
 	private Usuario findById(@PathVariable("id") Long id) {
 		return service.findById(id);
@@ -40,5 +40,11 @@ public class UsuarioController {
 	private void delete(@PathVariable("id") Long id) {
 		service.delete(id);
 	}
+	
+	@GetMapping("/rota/{id}")
+	private List<Usuario> findAllByRotaId(@PathVariable("id") Long id) {
+		return service.findAllByRotaId(id);
+	}
+		
 		
 }

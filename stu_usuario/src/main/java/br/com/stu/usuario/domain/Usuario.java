@@ -1,15 +1,11 @@
 package br.com.stu.usuario.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import java.io.Serializable;
 
-@Entity
-public class Usuario {
+public class Usuario implements Serializable {
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	private static final long serialVersionUID = -357520859602268298L;
+	
 	private Long id;
 	private String nome;
 	
